@@ -1,0 +1,26 @@
+<form class="githubForm">
+    <div class="form-group githubForm__block">
+        <label for="username">Hi, enter username please:</label>
+        <input type="text" class="githubForm__textfield form-control" id="username" placeholder="Enter username" ng-model="vm.username">
+    </div>
+    <button type="submit" class="githubForm__button btn btn-default" ng-click="vm.getGithubUser()">Submit</button>
+</form>
+
+<section class="githubStatus well" ng-show="vm.status">
+    <div ng-if="vm.isLoading()" class="githubStatus__loading">
+        Loading, please wait...
+    </div>
+    <div ng-if="vm.isError()" class="githubStatus__error text-danger">
+        {{ vm.errorInfo }}
+    </div>
+</section >
+
+<section class="githubRepositories well" ng-show="vm.repositories.length > 0">
+    <ul>
+        <li ng-repeat="repository in vm.repositories" class="githubRepositories__item">
+            <a ng-href="{{ repository.html_url }}" target="_blank" class="githubRepositories__itemLink">
+                {{ repository.name }}
+            </a>
+        </li>
+    </ul>
+</section>
